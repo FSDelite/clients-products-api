@@ -1,16 +1,14 @@
 import vine from '@vinejs/vine'
 
-export const singUpUserValidator = vine.compile(
+export const singInUserValidator = vine.compile(
   vine.object({
-    fullName: vine.string().trim().maxLength(254),
-    email: vine
+    username: vine
       .string()
       .trim()
-      .email()
-      .unique(async (db, value) => {
-        const user = await db.from('users').where({ email: value }).first()
-        return !user
+      .exists(async (db, value) => {
+        const user = await db.from('users').where({ username: value }).first()
+        return user
       }),
-    password: vine.string().trim().minLength(8),
+    password: vine.string().trim(),
   })
 )
