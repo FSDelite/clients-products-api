@@ -9,7 +9,7 @@ export default class ProductService {
     // Esta é uma implementação provisória (placeholder).
     return new FakeStoreApiService()
   }
-  static async getInternalProductId(externalId: number): Promise<number | null> {
+  static async findOrCreateInternalProductId(externalId: number, store = true): Promise<number | null> {
     const OriginService = this.getExternalService()
 
     const product = await rowExists(Product, {
@@ -18,6 +18,7 @@ export default class ProductService {
     })
 
     if (product) return product.id
+    if (!store) return null
 
     return await this.storeExternalProduct(externalId, OriginService)
   }

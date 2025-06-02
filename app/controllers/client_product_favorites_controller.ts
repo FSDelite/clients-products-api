@@ -39,7 +39,7 @@ export default class ClientProductFavoritesController {
     if (!client) {
       return response.notFound({ error: 'Client not found' })
     }
-    const internalProductId = await ProductService.getInternalProductId(productId)
+    const internalProductId = await ProductService.findOrCreateInternalProductId(productId)
 
     if (!internalProductId) {
       return response.notFound({ error: 'Product not found in partner API' })
@@ -59,5 +59,34 @@ export default class ClientProductFavoritesController {
     return response.created({
       message: 'Product added to favorites successfully',
     })
+  }
+
+  async destroy({ request, response }: HttpContext) {
+    const { params, productId } = await request.validateUsing(storeClientProductFavoriteValidator)
+    const { clientId } = params
+
+    const client: Client = await rowExists(Client, { id: clientId })
+    if (!client) {
+      return response.notFound({ error: 'Client not found' })
+    }
+
+    const internalProductId = await ProductService.findOrCreateInternalProductId(productId, false)
+
+    if (!internalProductId) {
+      return response.notFound({ error: 'Product not found in partner API' })
+    }
+
+    const favoriteExists = await rowExists(ClientProductFavorite, {
+      client_id: clientId,
+      product_id: internalProductId,
+    })
+
+    if (!favoriteExists) {
+      return response.notFound({ error: 'Favorite not found' })
+    }
+
+    await client.related('favoriteProducts').detach([internalProductId])
+
+    return response.noContent()
   }
 }
