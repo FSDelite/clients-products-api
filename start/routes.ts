@@ -9,15 +9,17 @@
 
 import router from '@adonisjs/core/services/router'
 import { authRoutes } from './routes/auth_routes.js'
+import { clientRoutes } from './routes/clients_routes.js'
 
 router.get('/', async () => {
   return {
-    hello: 'world',
+    message: 'All systems operational',
   }
 })
 
 router
   .group(() => {
     authRoutes
+    clientRoutes
   })
   .prefix('v1')
