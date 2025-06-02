@@ -1,6 +1,6 @@
 import Client from '#models/client'
 import {
-  deleteClientValidator,
+  idClientValidator,
   storeClientValidator,
   updateClientValidator,
 } from '#validators/client'
@@ -37,7 +37,7 @@ export default class ClientsController {
 
   async store({ request, response }: HttpContext) {
     const { name, email } = await request.validateUsing(storeClientValidator)
-    const clientExists = await rowExists('clients', { email })
+    const clientExists = await rowExists(Client, { email })
     if (clientExists) {
       return response.conflict({ error: 'The email has already been taken.' })
     }
@@ -55,7 +55,7 @@ export default class ClientsController {
   async update({ request, response }: HttpContext) {
     const { name, email, params } = await request.validateUsing(updateClientValidator)
     const id = params.id
-    const clientExists = await rowExists('clients', { email }, { id })
+    const clientExists = await rowExists(Client, { email }, { id })
 
     if (clientExists) {
       return response.conflict({ error: 'Client with this email already exists.' })
@@ -74,7 +74,7 @@ export default class ClientsController {
   }
 
   async destroy({ request, response }: HttpContext) {
-    const { params } = await request.validateUsing(deleteClientValidator)
+    const { params } = await request.validateUsing(idClientValidator)
     const id = params.id
     const client = await Client.find(id)
     if (!client) {

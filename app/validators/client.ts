@@ -17,10 +17,11 @@ export const updateClientValidator = vine.compile(
   })
 )
 
-export const deleteClientValidator = vine.compile(
+export const idClientValidator = vine.compile(
   vine.object({
     params: vine.object({
       id: vine.number(),
     }),
   })
 )
+

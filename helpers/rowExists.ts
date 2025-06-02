@@ -1,16 +1,14 @@
-import db from '@adonisjs/lucid/services/db'
-
 export const rowExists = async (
-  table: string,
+  model: any,
   field: object,
   exlcudeFilds: object = {}
-): Promise<boolean> => {
-  const query = db.from(table).where(field)
+): Promise<any> => {
+  const query = model.query().where(field)
 
   if (exlcudeFilds) {
     query.whereNot(exlcudeFilds)
   }
   const row = await query.first()
 
-  return !!row
+  return row
 }

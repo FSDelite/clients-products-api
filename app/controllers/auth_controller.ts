@@ -9,7 +9,7 @@ export default class AuthController {
   async login({ request, response }: HttpContext) {
     const { username, password } = await request.validateUsing(singInUserValidator)
 
-    const userExists = await rowExists('users', { username })
+    const userExists = await rowExists(User, { username })
 
     if (!userExists) {
       return response.notFound({ message: 'User not found' })

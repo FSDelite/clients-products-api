@@ -18,12 +18,6 @@ export default await Env.create(new URL('../', import.meta.url), {
   HOST: Env.schema.string({ format: 'host' }),
   LOG_LEVEL: Env.schema.enum(['fatal', 'error', 'warn', 'info', 'debug', 'trace']),
 
-  /*
-  |----------------------------------------------------------
-  | Variables for configuring database connection
-  |----------------------------------------------------------
-  */
-
   DB_HOST: Env.schema.string({ format: 'host' }),
   DB_PORT: Env.schema.number(),
   DB_USER: Env.schema.string(),
@@ -31,17 +25,9 @@ export default await Env.create(new URL('../', import.meta.url), {
   DB_DATABASE: Env.schema.string(),
   DB_DEBUG: Env.schema.boolean.optional(),
 
-  /*
-  |----------------------------------------------------------
-  | Variables for configuring the first user
-  |----------------------------------------------------------
-  */
   FIRST_USER_PASSWORD: Env.schema.string(),
 
-  /*
-  |----------------------------------------------------------
-  | Variables for configuring Authentication
-  |----------------------------------------------------------
-  */
-  API_TOKEN_EXPIRES_IN_SECONDS: Env.schema.number.optional() , // 1 day in seconds
+  API_TOKEN_EXPIRES_IN_SECONDS: Env.schema.number.optional(), // 1 day in seconds
+
+  FAKESTORE_BASE_URL: Env.schema.string({ format: 'url' }),
 })
