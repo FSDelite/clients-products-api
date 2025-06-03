@@ -15,8 +15,10 @@ export default class ClientProductFavoritesController {
     const { params } = await request.validateUsing(clientIdValidator)
     const id = params.clientId
 
-    const page = request.input('page', 1)
-    const perPage = Math.min(request.input('perPage', 10), 100)
+    const page = request.input('page') || 1
+    const perPage = Math.min(request.input('perPage') || 10, 100)
+
+    console.log(page, perPage)
 
     const client = await Client.query().select('id').where('id', id).first()
 

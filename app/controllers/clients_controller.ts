@@ -1,16 +1,12 @@
 import Client from '#models/client'
-import {
-  idClientValidator,
-  storeClientValidator,
-  updateClientValidator,
-} from '#validators/client'
+import { idClientValidator, storeClientValidator, updateClientValidator } from '#validators/client'
 import type { HttpContext } from '@adonisjs/core/http'
 import { rowExists } from '../../helpers/rowExists.js'
 
 export default class ClientsController {
   async index({ request }: HttpContext) {
-    const page = request.input('page', 1)
-    const perPage = Math.min(request.input('perPage', 10), 100)
+    const page = request.input('page') || 1
+    const perPage = Math.min(request.input('perPage') || 10, 100)
 
     return Client.query().paginate(page, perPage)
   }
@@ -81,8 +77,6 @@ export default class ClientsController {
       return response.notFound({ error: 'Client not found.' })
     }
     await client.delete()
-    return response.ok({
-      message: 'Client deleted successfully',
-    })
+    return response.noContent()
   }
 }
