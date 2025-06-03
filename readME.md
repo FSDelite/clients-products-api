@@ -22,7 +22,7 @@ A estrutura inicial do projeto foi baseada em um boilerplate que desenvolvi e ma
 ### Passos
 
 ```sh
-git clone <https://github.com/FSDelite/clients-products-api>
+git clone https://github.com/FSDelite/clients-products-api
 cd clients-products-api
 cp .env.example .env
 docker-compose up --build
