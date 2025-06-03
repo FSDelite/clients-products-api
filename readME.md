@@ -12,7 +12,9 @@ A estrutura inicial do projeto foi baseada em um boilerplate que desenvolvi e ma
 
 - **Docker**: Utilizado para containerizar a aplicação, garantindo que ela rode de forma consistente em qualquer ambiente. O Docker permite que a aplicação seja facilmente implantada e escalada.
 
-## Instalação e Setup
+## Instalação com Dcoker
+
+Caso você não tenha familiaridade com Docker, mais abaixo há uma seção de instalação manual. Recomendo o uso do Docker para facilitar o setup e garantir que todas as dependências estejam corretamente configuradas.
 
 ### Pré-requisitos
 
@@ -43,7 +45,7 @@ sh scripts/migrations.sh
 sh scripts/seeds.sh
 ```
 
-#### Instalação manual
+## Instalação manual
 
 Se você prefere rodar o projeto sem Docker, siga os passos abaixo:
 
