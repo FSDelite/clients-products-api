@@ -94,7 +94,7 @@ Armazena os usuários que podem se autenticar na API (usuários do sistema).
 
 ### `auth_access_tokens`
 
-Tokens de autenticação associados aos usuários. Criada pelo AdonisJS
+Tokens de autenticação associados aos usuários. Criada pelo AdonisJS.
 
 | Coluna         | Tipo      | Restrições                              |
 |----------------|-----------|-----------------------------------------|
