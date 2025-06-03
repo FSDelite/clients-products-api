@@ -30,4 +30,5 @@ export default await Env.create(new URL('../', import.meta.url), {
   API_TOKEN_EXPIRES_IN_SECONDS: Env.schema.number.optional(), // 1 day in seconds
 
   FAKESTORE_BASE_URL: Env.schema.string({ format: 'url' }),
+  X_API_KEY: Env.schema.string(),
 })
