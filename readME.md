@@ -43,6 +43,37 @@ sh scripts/migrations.sh
 sh scripts/seeds.sh
 ```
 
+#### Instalação manual
+
+Se você prefere rodar o projeto sem Docker, siga os passos abaixo:
+
+- Node.js 20+ instalado
+- PostgreSQL 13+ rodando localmente
+- Um `.env` configurado com suas variáveis (baseie-se no `.env.example`)
+
+```sh
+git clone https://github.com/FSDelite/clients-products-api
+cd clients-products-api
+cp .env.example .env
+npm install
+```
+
+### Configuração do Banco de Dados
+
+Certifique-se de que o PostgreSQL esteja rodando e crie um banco de dados para a aplicação. Atualize o arquivo `.env` com as credenciais corretas do banco de dados:
+Em seguida, execute as migrações e seeds:
+
+```sh
+node ace migration:run
+node ace db:seed
+```
+
+Por fim, inicie o servidor:
+
+```sh
+npm run dev
+```
+
 ## Autenticação
 
 A autenticação da API utiliza tokens (`auth_access_tokens`) gerados automaticamente após o login com um usuário válido.
