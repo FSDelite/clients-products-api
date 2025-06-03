@@ -208,7 +208,7 @@ Funções auxiliares como rowExists() foram criadas para evitar duplicação de 
 
 ## Melhorias Futuras
 
-- Implementar testes unitários e de integração. Devido a agenda apertada, não foi possível incluir testes automatizados nesta versão. No entanto, a estrutura do projeto foi pensada para facilitar a adição de testes no futuro.
+- Implementar testes unitários e de integração. Devido à agenda apertada, não foi possível incluir testes automatizados nesta versão. No entanto, a estrutura do projeto foi pensada para facilitar a adição de testes no futuro.
 
 - Adicionar suporte a cache para reduzir chamadas à API externa e melhorar performance.
 
